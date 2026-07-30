@@ -229,11 +229,13 @@ p:last-child { margin-bottom: 0; }
 .site-nav__list {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 22px;
 }
 .site-nav__link {
+  display: block;
+  white-space: nowrap;
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   color: var(--color-ink);
   padding: 6px 2px;
   border-bottom: 2px solid transparent;
@@ -246,6 +248,15 @@ p:last-child { margin-bottom: 0; }
   #site-nav {
     display: flex;
   }
+}
+
+/* Zwischen 1025-1300px wird es eng (7 Nav-Punkte + Logo + Telefon-Button) —
+   etwas kompakter, damit "Getriebe & Motoren" / "Über uns" nicht umbrechen. */
+@media (min-width: 1025px) and (max-width: 1300px) {
+  .site-nav__list { gap: 14px; }
+  .site-nav__link { font-size: 0.86rem; }
+  .site-header__brand-sub { display: none; }
+  .site-header__phone span { display: none; }
 }
 
 @media (max-width: 1024px) {
@@ -304,7 +315,7 @@ p:last-child { margin-bottom: 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(22,40,31,0.35) 0%, rgba(22,40,31,0.55) 55%, rgba(18,28,22,0.92) 100%);
+  background: linear-gradient(180deg, rgba(20,32,25,0.45) 0%, rgba(20,32,25,0.68) 55%, rgba(16,24,19,0.94) 100%);
 }
 .hero__content {
   position: relative;
@@ -321,11 +332,27 @@ p:last-child { margin-bottom: 0; }
 }
 .page-hero .hero__content { padding: 56px 0; }
 .page-hero .hero__lead { font-size: 1.05rem; }
+/* Kleinere Heroes brauchen ein gleichmäßigeres, dunkleres Scrim, damit die
+   Schrift unabhängig vom Bildinhalt (Werkzeug, Motorteile etc.) lesbar
+   bleibt, statt sich auf den vertikalen Verlauf zu verlassen. */
+.page-hero .hero__bg::after {
+  background: linear-gradient(180deg, rgba(18,28,22,0.72) 0%, rgba(18,28,22,0.8) 100%);
+}
 
 @media (max-width: 640px) {
-  .hero { min-height: 66vh; }
-  .page-hero { min-height: 34vh; }
-  .hero__ctas { flex-direction: column; align-items: stretch; }
+  .hero { min-height: 0; }
+  .hero__bg::after {
+    background: linear-gradient(180deg, rgba(18,28,22,0.6) 0%, rgba(16,24,19,0.82) 60%, rgba(14,21,17,0.95) 100%);
+  }
+  .hero__content { padding: 44px 0 40px; }
+  .hero__lead { font-size: 1.05rem; }
+  .hero__ctas { flex-direction: column; align-items: stretch; margin-top: 24px; gap: 12px; }
+
+  .page-hero { min-height: 0; }
+  .page-hero .hero__content { padding: 36px 0; }
+  .page-hero .hero__bg::after {
+    background: rgba(17,26,21,0.8);
+  }
 }
 
 /* ── Trust Bar ───────────────────────────────────────────────── */
@@ -345,7 +372,12 @@ p:last-child { margin-bottom: 0; }
   text-align: center;
 }
 .trust-bar__list li { flex: 1 1 200px; }
-.trust-bar__list strong { display: block; font-size: 1.5rem; color: var(--color-brass-light); }
+.trust-bar__list strong { display: block; font-size: 1.5rem; color: var(--color-brass-light); margin-bottom: 2px; }
+
+@media (max-width: 640px) {
+  .trust-bar { padding: 32px 0; }
+  .trust-bar__list { gap: 22px; }
+}
 
 /* ── Cards: Leistungen ───────────────────────────────────────── */
 .grid {
