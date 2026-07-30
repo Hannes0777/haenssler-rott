@@ -344,22 +344,40 @@ p:last-child { margin-bottom: 0; }
   .hero__bg::after {
     background: linear-gradient(180deg, rgba(18,28,22,0.6) 0%, rgba(16,24,19,0.82) 60%, rgba(14,21,17,0.95) 100%);
   }
-  .hero__content { padding: 44px 0 40px; }
-  .hero__lead { font-size: 1.05rem; }
-  .hero__ctas { flex-direction: column; align-items: stretch; margin-top: 24px; gap: 12px; }
+  .hero__content { padding: 40px 0 36px; }
+  .hero__lead { font-size: 1rem; }
+  /* Zwei große gleich schwere Buttons wirken übereinander gestapelt
+     schnell "vollgepackt" — der zweite wird zum leichteren Text-Link. */
+  .hero__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 22px;
+    gap: 14px;
+  }
+  .hero__ctas .btn--primary { padding: 0.8em 1.5em; font-size: 1rem; }
+  .hero__ctas .btn--outline {
+    border: none;
+    padding: 0.2em 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 
   .page-hero { min-height: 0; }
-  .page-hero .hero__content { padding: 36px 0; }
+  .page-hero .hero__content { padding: 32px 0; }
   .page-hero .hero__bg::after {
-    background: rgba(17,26,21,0.8);
+    background: rgba(15,23,18,0.88);
   }
 }
 
 /* ── Trust Bar ───────────────────────────────────────────────── */
+/* Bewusst HELL statt dunkel: direkt nach dem dunklen Hero würde ein
+   zweiter dunkler Block wie eine durchgehende dunkle Wand wirken
+   ("vollgepackt"). Die helle Leiste schafft einen klaren Wechsel/Atmer. */
 .trust-bar {
-  background: var(--color-green-800);
-  color: var(--color-cream);
-  padding: 22px 0;
+  background: var(--color-cream-alt);
+  color: var(--color-green-900);
+  padding: 26px 0;
+  border-bottom: 1px solid var(--color-border);
 }
 .trust-bar__list {
   display: flex;
@@ -372,11 +390,11 @@ p:last-child { margin-bottom: 0; }
   text-align: center;
 }
 .trust-bar__list li { flex: 1 1 200px; }
-.trust-bar__list strong { display: block; font-size: 1.5rem; color: var(--color-brass-light); margin-bottom: 2px; }
+.trust-bar__list strong { display: block; font-size: 1.5rem; color: var(--color-brass-dark); margin-bottom: 2px; }
 
 @media (max-width: 640px) {
-  .trust-bar { padding: 32px 0; }
-  .trust-bar__list { gap: 22px; }
+  .trust-bar { padding: 28px 0; }
+  .trust-bar__list { gap: 20px; }
 }
 
 /* ── Cards: Leistungen ───────────────────────────────────────── */
