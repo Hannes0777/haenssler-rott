@@ -297,57 +297,31 @@ p:last-child { margin-bottom: 0; }
   .site-header__logo-img { height: 38px; }
 }
 
-/* ── Hero ────────────────────────────────────────────────────── */
-.hero {
-  position: relative;
+/* ── Seitenkopf: Text und Foto bewusst getrennt ──────────────────
+   Text sitzt nie auf dem Foto (kein Overlay-Hero mehr) — stattdessen
+   ein eigenes, klar lesbares Farbfeld, gefolgt von einem reinen
+   Bildstreifen ohne Text/Verlauf. Sauberer und unabhängig davon, was
+   gerade im Foto zu sehen ist. */
+.page-header {
+  background: var(--color-green-900);
   color: var(--color-white);
-  display: flex;
-  align-items: flex-end;
-  min-height: 78vh;
+  padding: 48px 0 40px;
 }
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-}
-.hero__bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(20,32,25,0.45) 0%, rgba(20,32,25,0.68) 55%, rgba(16,24,19,0.94) 100%);
-}
-.hero__content {
-  position: relative;
-  padding: 64px 0 72px;
-  max-width: 760px;
-}
-.hero__title { color: var(--color-white); }
+.page-header h1 { color: var(--color-white); margin-bottom: 0.4em; }
 .hero__lead { font-size: 1.2rem; max-width: 55ch; color: rgba(255,255,255,0.92); }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
 
-.page-hero {
-  min-height: 42vh;
-  align-items: center;
-}
-.page-hero .hero__content { padding: 56px 0; }
-.page-hero .hero__lead { font-size: 1.05rem; }
-/* Kleinere Heroes brauchen ein gleichmäßigeres, dunkleres Scrim, damit die
-   Schrift unabhängig vom Bildinhalt (Werkzeug, Motorteile etc.) lesbar
-   bleibt, statt sich auf den vertikalen Verlauf zu verlassen. */
-.page-hero .hero__bg::after {
-  background: linear-gradient(180deg, rgba(18,28,22,0.72) 0%, rgba(18,28,22,0.8) 100%);
-}
+.page-header--home { padding: 68px 0 52px; }
+.page-header--home .hero__lead { font-size: 1.15rem; max-width: 62ch; }
+
+.page-banner { width: 100%; overflow: hidden; aspect-ratio: 16/5; }
+.page-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.page-banner--home { aspect-ratio: 16/6; }
 
 @media (max-width: 640px) {
-  .hero { min-height: 0; }
-  .hero__bg::after {
-    background: linear-gradient(180deg, rgba(18,28,22,0.6) 0%, rgba(16,24,19,0.82) 60%, rgba(14,21,17,0.95) 100%);
-  }
-  .hero__content { padding: 40px 0 36px; }
+  .page-header { padding: 36px 0 32px; }
+  .page-header--home { padding: 40px 0 34px; }
   .hero__lead { font-size: 1rem; }
-  /* Zwei große gleich schwere Buttons wirken übereinander gestapelt
-     schnell "vollgepackt" — der zweite wird zum leichteren Text-Link. */
   .hero__ctas {
     flex-direction: column;
     align-items: flex-start;
@@ -361,12 +335,8 @@ p:last-child { margin-bottom: 0; }
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-
-  .page-hero { min-height: 0; }
-  .page-hero .hero__content { padding: 32px 0; }
-  .page-hero .hero__bg::after {
-    background: rgba(15,23,18,0.88);
-  }
+  .page-banner,
+  .page-banner--home { aspect-ratio: 4/3; }
 }
 
 /* ── Trust Bar ───────────────────────────────────────────────── */
