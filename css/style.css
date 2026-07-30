@@ -297,11 +297,11 @@ p:last-child { margin-bottom: 0; }
   .site-header__logo-img { height: 38px; }
 }
 
-/* ── Seitenkopf: Text und Foto bewusst getrennt ──────────────────
-   Text sitzt nie auf dem Foto (kein Overlay-Hero mehr) — stattdessen
-   ein eigenes, klar lesbares Farbfeld, gefolgt von einem reinen
-   Bildstreifen ohne Text/Verlauf. Sauberer und unabhängig davon, was
-   gerade im Foto zu sehen ist. */
+/* ── Unterseiten: zwei Layouts je Breakpoint ─────────────────────
+   Mobil (.page-header + .page-banner): Text getrennt vom Foto in
+   einem eigenen Farbfeld, Foto als reiner Streifen darunter.
+   Desktop (.page-hero-full): "ganz normal" — Text liegt wieder auf
+   dem Foto, wie ursprünglich und wie auf der Startseite. */
 .page-header {
   background: var(--color-green-900);
   color: var(--color-white);
@@ -313,6 +313,33 @@ p:last-child { margin-bottom: 0; }
 
 .page-banner { width: 100%; overflow: hidden; aspect-ratio: 16/5; }
 .page-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.page-hero-full {
+  position: relative;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  min-height: 42vh;
+}
+.page-hero-full__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.page-hero-full__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(18,28,22,0.55) 0%, rgba(18,28,22,0.74) 100%);
+}
+.page-hero-full__content { position: relative; padding: 56px 0; max-width: 760px; }
+.page-hero-full h1 { color: var(--color-white); }
+.page-hero-full .hero__lead { font-size: 1.05rem; }
+
+/* Je Breakpoint ist nur eine der beiden Varianten sichtbar */
+@media (max-width: 640px) { .page-hero-full { display: none; } }
+@media (min-width: 641px) { .page-header, .page-banner { display: none; } }
 
 /* ── Startseite: zwei komplett unterschiedliche Layouts ─────────
    Desktop (.hero-full): der "ganz normale" klassische Foto-Hero mit
