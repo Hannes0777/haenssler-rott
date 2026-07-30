@@ -319,7 +319,7 @@ p:last-child { margin-bottom: 0; }
   color: var(--color-white);
   display: flex;
   align-items: center;
-  min-height: 42vh;
+  min-height: 58vh;
 }
 .page-hero-full__bg {
   position: absolute;
@@ -333,7 +333,7 @@ p:last-child { margin-bottom: 0; }
   inset: 0;
   background: linear-gradient(180deg, rgba(18,28,22,0.55) 0%, rgba(18,28,22,0.74) 100%);
 }
-.page-hero-full__content { position: relative; padding: 56px 0; max-width: 760px; }
+.page-hero-full__content { position: relative; padding: 64px 0; max-width: 760px; }
 .page-hero-full h1 { color: var(--color-white); }
 .page-hero-full .hero__lead { font-size: 1.05rem; }
 
