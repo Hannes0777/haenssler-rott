@@ -314,10 +314,36 @@ p:last-child { margin-bottom: 0; }
 .page-banner { width: 100%; overflow: hidden; aspect-ratio: 16/5; }
 .page-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* ── Startseite: hier bleibt das Foto als Hintergrund, aber der Text
-   darauf ist auf die reine Überschrift reduziert — alles andere
-   (Anmoderation, Fließtext, Buttons) folgt sauber darunter auf
-   normalem Hintergrund statt auf dem Bild zu liegen. */
+/* ── Startseite: zwei komplett unterschiedliche Layouts ─────────
+   Desktop (.hero-full): der "ganz normale" klassische Foto-Hero mit
+   Anmoderation, Überschrift, Text und Buttons zusammen auf dem Bild —
+   auf großer Breite wirkt das nicht überladen.
+   Mobil (.home-hero + .home-intro): Foto zeigt nur die Überschrift,
+   der Rest folgt sauber getrennt darunter (siehe Feedback weiter
+   oben). Beide Varianten liegen im HTML, CSS blendet je Breakpoint
+   die passende ein/aus. */
+.hero-full {
+  position: relative;
+  color: var(--color-white);
+  display: flex;
+  align-items: flex-end;
+  min-height: 66vh;
+}
+.hero-full__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.hero-full__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,32,25,0.35) 0%, rgba(20,32,25,0.6) 55%, rgba(16,24,19,0.9) 100%);
+}
+.hero-full__content { position: relative; padding: 64px 0 72px; max-width: 760px; }
+.hero-full h1 { color: var(--color-white); }
+
 .home-hero {
   position: relative;
   min-height: 52vh;
@@ -342,6 +368,14 @@ p:last-child { margin-bottom: 0; }
 
 .home-intro { padding: 40px 0 8px; }
 .home-intro .eyebrow { display: block; }
+
+/* Nur eine der beiden Varianten ist je Breakpoint sichtbar */
+.home-hero, .home-intro { display: none; }
+@media (max-width: 640px) {
+  .hero-full { display: none; }
+  .home-hero { display: flex; }
+  .home-intro { display: block; }
+}
 .home-intro p.lead { font-size: 1.15rem; color: var(--color-ink-soft); max-width: 68ch; margin: 0.6em 0 0; }
 
 @media (max-width: 640px) {
